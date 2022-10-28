@@ -13,7 +13,7 @@ const LiquidCard = ({icon, volume}) => {
     
     const subtractFromBar = ({volume}) => {
         console.log(volume);
-        setCount(count-1);
+        setCount(Math.max(count-1, 0));
         return volume;
     };
 
@@ -23,7 +23,9 @@ const LiquidCard = ({icon, volume}) => {
             <h5 style={{marginTop: "4px"}}>{volume} mL</h5>
             <div className = "d-flex justify-content-around column g-5">
                 <input type="image" src={minusButton} style={{height: "30px"}}  onClick={() => subtractFromBar({volume})} />
-                <h5 style={{marginLeft: "4px", marginRight: "4px"}}>{count}</h5>
+                <div style={{width: "35px", display: "flex", justifyContent: "center"}}>
+                    <h5>{count}</h5>
+                </div>
                 <input type="image" src={addButton} style={{height: "30px"}}  onClick={() => addToBar({volume})} />
             </div>
         </div>

@@ -3,9 +3,11 @@ import "./progressBar.css";
 
 const ProgressBar = ({ volume }) => {
   return (
-    <div className="progressContainer" >
-      <div className="filler" style={{ width: `${volume}%` }}>
-        <span className="label" >{volume}%</span>
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <div className="progressContainer" >
+        <div className="filler" style={{ width: `calc(${volume}% + 10px)` }}>
+          <span className="label" >{volume}%</span>
+        </div>
       </div>
     </div>
   );

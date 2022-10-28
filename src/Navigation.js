@@ -3,9 +3,9 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 
 const Navigation = () =>{
     return(
-        <nav className="row text-center pb-3" style={{ backgroundColor: "#ADD8E6" }}>
-             <div className="headBar">
-                <h1 className="heading "> Stay Hydrated </h1>
+        <nav className="row text-center" style={{ backgroundColor: "#ADD8E6" }}>
+             <div className="headBar" style={{display: "flex", height: "70px", justifyContent: "center", alignItems: "center"}}>
+                <h1 className="heading " style={{ color: "white" }}> Stay Hydrated </h1>
             </div>
         </nav>
     )

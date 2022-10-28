@@ -3,13 +3,13 @@
   width: 80%;
   background-color: #e0e0de;
   border-radius: 50px;
-  margin: 50px;
+  margin: 40px;
 }
 /* backgroundColor and width inline */
 .filler {
   height: 100%;
   border-radius: inherit;
-  background-color: blue;
+  background-color: #ADD8E6;
   text-align: right;
 }
 
