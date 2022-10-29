@@ -7,7 +7,7 @@ const LiquidCardList = ({ products }) => {
     <>
     <div className="btn-toolbar justify-content-between">
         { 
-            Object.values(products).map(product => <LiquidCard product = {product} ></LiquidCard>)
+          Object.values(products).length > 0 ? Object.values(products).map(product => <LiquidCard product = {product} ></LiquidCard>) :  <h1>Oops, it seems that you have no items. Click on the 'Add Item' button to start tracking your water intake!</h1>
         } 
       </div>
     </>

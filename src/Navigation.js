@@ -2,7 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import {signInWithGoogle, signOut, useUserState, useData } from './utilities/firebase.js';
 
-const SignInButton = () => (
+export const SignInButton = () => (
     <button className="ms-auto btn btn-dark m-1 p-2"
         onClick={() => signInWithGoogle()}>
       Sign In
@@ -10,7 +10,7 @@ const SignInButton = () => (
   );
   
   
-  const SignOutButton = () => (
+  export const SignOutButton = () => (
     <button className="ms-auto btn btn-dark m-1 p-2"
         onClick={() => signOut()}>
       Sign Out
