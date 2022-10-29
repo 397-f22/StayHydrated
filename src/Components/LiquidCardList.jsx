@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {liquidCard} from './LiquidCard';
+import LiquidCard from './LiquidCard';
 
 
 const LiquidCardList = ({ products }) => {
@@ -7,10 +7,10 @@ const LiquidCardList = ({ products }) => {
     <>
       <div className="btn-toolbar justify-content-between">
         <div className="btn-group">
-        </div>
         { 
-            Object.values(products).map(product => <liquidCard product = {product} ></liquidCard>)
+            Object.values(products).map(product => <LiquidCard product = {product} ></LiquidCard>)
         } 
+      </div>
       </div>
     </>
   );

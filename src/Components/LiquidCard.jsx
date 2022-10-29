@@ -20,14 +20,14 @@ const subtractFromBar = ({product}) => {
 };
 
 
-const liquidCard = ({product}) => {
+const LiquidCard = ({product}) => {
 
     return (
         <div className = "d-inline-flex flex-column align-items-center">
-            <img src={product.icon} style={{height: "100px"}}></img>
+            <h5 style={{marginTop: "4px"}}>{product.name}</h5>
+            <img src={product.icon} style={{height: "100px"}} alt="new"></img>
             <h5 style={{marginTop: "4px"}}>Volume: {product.volume} mL</h5>
             <h5 style={{marginTop: "4px"}}>Quantity: {product.quantity}</h5>
-            <h5 style={{marginTop: "4px"}}>Name: {product.name}</h5>
             <h5 style={{marginTop: "4px"}}>Category: {product.category}</h5>
             <div className = "d-flex justify-content-around column g-5">
                 <input type="image" src={minusButton} style={{height: "30px"}}  onClick={() => subtractFromBar({product})} />
@@ -40,4 +40,4 @@ const liquidCard = ({product}) => {
     )
 };
 
-export default liquidCard;
+export default LiquidCard;
