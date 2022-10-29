@@ -36,15 +36,15 @@ export const Profile = () => {
 
     return (
         <div>
-            <div className = "d-inline-flex flex-column align-items-center">
-                <h1>Profile</h1>
-                <div className = "d-inline-flex flex-column align-items-center">
-                    <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100px'}}>
-                        <p className="ms-auto" id="welcome">Hello {user?.displayName}.</p> 
-                        { user ? <SignOutButton /> : <SignInButton /> }
-                    </div>
-                </div>
-                <InputField name="dailyGoal" text="Daily Goal in ml"/>
+            <div className = "d-inline-flex flex-column align-items-center" style={{paddingTop: "20px", width: "100vw"}}>
+                <h1 style={{fontSize:"40px"}}>Profile</h1>
+                {/* <div className = "d-inline-flex flex-column align-items-center"> */}
+                {/* <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100px'}}> */}
+                <div style={{marginTop: "15px"}}><p className="ms-auto" id="welcome">Hello{user ? ` ${user.displayName}` : ", please sign in to continue"}</p></div>
+                {/* </div> */}
+                {user && <InputField name="dailyGoal" text="Set Your Daily Goal in Liters"/>}
+                <div>{ user ? <SignOutButton /> : <SignInButton /> }</div>        
+                {/* </div> */}
             </div>
       </div>
     );

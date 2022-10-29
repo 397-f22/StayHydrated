@@ -17,15 +17,21 @@ export const SignInButton = () => (
     </button>
   );
 
-const Navigation = () =>{
+const Navigation = ({profileClick}) =>{
     const [user] = useUserState();
 
     return(
-        <nav className="row text-center" style={{ backgroundColor: "#ADD8E6" }}>
-             <div className="headBar" style={{display: "flex", height: "70px", justifyContent: "center", alignItems: "center"}}>
-                <h1 className="heading " style={{ color: "white" }}> Stay Hydrated </h1>
-                {user ? <p className="ms-auto" id="welcome">Welcome, {user.displayName}</p> : <p className="ms-auto" id="welcome">Welcome guest.</p>}
-                { user ? <SignOutButton /> : <SignInButton /> }
+        <nav className="row text-center" style={{ backgroundColor: "#ADD8E6", height: "70px" }}>
+             <div className="headBar" style={{display: "flex", height: "70px", justifyContent: "space-between", alignItems: "center"}}>
+                <h1 className="heading" style={{ color: "white", marginLeft:"20px" }}> Stay Hydrated </h1>
+                {/* {user ? <p className="ms-auto" id="welcome">Welcome, {user.displayName}</p> : <p className="ms-auto" id="welcome">Welcome guest.</p>} */}
+                { user
+                  ? <div>
+                      <button style={{border: "none", background: "none", marginRight: "15px"}} onClick={() => {profileClick()}}>
+                        <img src={user.photoURL} onClick={() => {profileClick()}} style={{height: "45px", borderRadius: "50%"}}></img>
+                      </button>
+                    </div>
+                  : <div style={{marginRight: "15px"}}><SignInButton /></div> }
             </div>
         </nav>
     )

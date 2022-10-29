@@ -20,7 +20,7 @@ const InputField = ({ name, text, state, change }) => (
   const ButtonBar = ({ message, disabled }) => {
     return (
       <div className="d-flex">
-        <button type="submit" className="btn btn-primary me-auto" disabled={disabled}>Submit</button>
+        <button type="submit" className="btn btn-dark me-auto" disabled={disabled}>Submit</button>
         <span className="p-2">{message}</span>
       </div>
     );
@@ -39,6 +39,7 @@ const validateInput = (quantity, volume) => {
   const ActiveModalEditItem = ({product}) => {
     const [update, result] = useDbUpdate(`/Products/${product.name}`);
     const [state, change] = useFormData(validateInput, product);
+    console.log(state)
     const submit = (evt) => {
       evt.preventDefault();
       if (!state.errors) {
@@ -52,9 +53,9 @@ const validateInput = (quantity, volume) => {
                 <h1>Edit {product.name}:</h1>
             </div>
             <form onSubmit={submit} noValidate className={state.errors ? "was-validated" : null} >
-                <InputField name="quantity" text="Quantity" state={state} change={change} />
-                <InputField name="volume" text="Volume" state={state} change={change} />
-                <InputField  name="category" text="Category" state={state} change={change} />
+                {/* <InputField name="quantity" text="Quantity" state={state} change={change}/> */}
+                <InputField name="volume" text="Volume" state={state} change={change}/>
+                <InputField name="category" text="Category" state={state} change={change} />
                 <div className = "d-inline-flex flex-column align-items-center">
                     <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100px'}}>
                         <InputField name="img_url" text="Image URL" state={state} change={change}/>

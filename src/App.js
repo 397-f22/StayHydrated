@@ -1,13 +1,16 @@
 import './App.css';
 import Navigation from './Navigation';
+import NavigationBottom from './Components/NavigationBottom';
 import ProgressBar from './Components/progressBar';
 import LiquidCardList from "./Components/LiquidCardList"
 import { useState } from "react"
 import {useData } from './utilities/firebase.js';
 import { useUserState } from './utilities/firebase';
 import {Profile} from "./Components/Profile.jsx";
+import Summary from './Components/Summary';
 import Modal from './Components/Modal';
 import AddItemModal  from './Components/AddItemModal.jsx';
+import add from './Components/pngs/add.png'
 
 
 function App() {
@@ -19,9 +22,25 @@ function App() {
   const openModal = () => setOpen(true);
   const closeModal = () => setOpen(false);
 
-  const [profileOpen, setProfileOpen] = useState(false);
-  const openProfileModal = () => setProfileOpen(true);
-  const closeProfileModal = () => setProfileOpen(false);
+  const [showProfile, setShowProfile] = useState(false);
+  const [showSummary, setShowSummary] = useState(false);
+  const [showTracking, setShowTracking] = useState(true);
+  const ProfileClick = () => {
+    setShowProfile(true);
+    setShowSummary(false);
+    setShowTracking(false);
+  };
+  const SummaryClick = () => {
+    setShowProfile(false);
+    setShowSummary(true);
+    setShowTracking(false);
+  };
+  const TrackingClick = () => {
+    setShowProfile(false);
+    setShowSummary(false);
+    setShowTracking(true);
+  };
+  
 
   if (error) return <h1>{error}</h1>;
   if (loading) return <h1>Loading the products...</h1>
@@ -31,17 +50,30 @@ function App() {
   console.log(total_volume)
 
   return (
-    <div>
-      <Navigation />
-      { user ? <button style={{marginTop: "4px"}} className="ms-medium btn btn-dark m-1 p-2" onClick={openModal}>Add Item</button> : <> </> }
-      { user ? <button style={{marginTop: "4px"}} className="ms-medium btn btn-dark m-1 p-2" onClick={openProfileModal}>Profile</button> : <> </> }
-      <h3 className="d-inline-flex justify-items-center ">{total_volume} / {goal} L</h3>
-      <ProgressBar volume={(total_volume/ goal * 100).toFixed(1)}></ProgressBar>
-      <div className='container'>
-        <LiquidCardList products={products} />
-      </div>
-      <Modal open={open} close={closeModal}><AddItemModal/></Modal>
-      <Modal open={profileOpen} close={closeProfileModal}><Profile/></Modal>
+    <div className="mainView">
+      <Navigation profileClick={ProfileClick}/>
+      {showProfile && <Profile/>}
+      {showTracking && 
+        <div className='tracking'>
+          {/* { user ? <button style={{marginTop: "4px"}} className="ms-medium btn btn-dark m-1 p-2" onClick={openProfileModal}>Profile</button> : <> </> } */}
+          
+          <ProgressBar volume={(total_volume/ goal * 100).toFixed(1)}></ProgressBar>
+          <div style={{ width: "80vw", display: "flex", justifyContent: "space-between", alignItems: "center", margin: "auto", marginTop: "-20px", marginBottom: "20px" }}>
+            <h3>{total_volume.toFixed(1)} L / {goal} L</h3>
+            { user ? <input type="image" src={add} style={{height: "25px", marginTop: "-8px"}} onClick={openModal} /> : <> </> }
+          </div>
+
+          
+
+          <div className='container'>
+            <LiquidCardList products={products} />
+          </div>
+          <Modal open={open} close={closeModal}><AddItemModal/></Modal>
+          {/* <Modal open={profileOpen} close={closeProfileModal}><Profile/></Modal> */}
+        </div>
+      }
+      {showSummary && <Summary/>}
+      <NavigationBottom trackingClick={TrackingClick} profileClick={ProfileClick} summaryClick={SummaryClick} />
     </div>
   );
 }
