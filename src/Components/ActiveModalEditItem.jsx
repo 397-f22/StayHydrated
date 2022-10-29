@@ -48,25 +48,19 @@ const validateInput = (quantity, volume) => {
   
     return (
         <div>
-            
-            <h1>Edit Item:</h1>
-            <form
-                onSubmit={submit}
-                noValidate
-                className={state.errors ? "was-validated" : null}
-            >
-                <InputField
-                name="quantity"
-                text="Quantity"
-                state={state}
-                change={change}
-                />
-                <InputField
-                name="volume"
-                text="Volume"
-                state={state}
-                change={change}
-                />
+            <div className = "d-inline-flex flex-column align-items-center">
+                <h1>Edit {product.name}:</h1>
+            </div>
+            <form onSubmit={submit} noValidate className={state.errors ? "was-validated" : null} >
+                <InputField name="quantity" text="Quantity" state={state} change={change} />
+                <InputField name="volume" text="Volume" state={state} change={change} />
+                <InputField  name="category" text="Category" state={state} change={change} />
+                <div className = "d-inline-flex flex-column align-items-center">
+                    <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100px'}}>
+                        <InputField name="img_url" text="Image URL" state={state} change={change}/>
+                        <img src={product.img_url} style={{marginTop: "4px", height: "100px"}} alt="new"></img>
+                    </div>
+                </div>
                 <ButtonBar message={result?.message} />
             </form>
       </div>

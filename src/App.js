@@ -32,13 +32,14 @@ export default App;
 /*
 
 -- TO DO:
-- Make Firebase catalog of items drinking with values, img.
-- Fetch Items from DB and display them in list way.
-- Allow Editing of the items from the DB when logged in.
-- Make Modal Pop-up to add new item, get images from Firebase to add.
-- Save and upload item to Firebase.
-- Update Progress Bar.
-- Update user limits, preferences.
+- Make Firebase catalog of items drinking with values, img. -> COMPLETED
+- Fetch Items from DB and display them in list way. -> COMPLETED
+- Allow Editing of the items from the DB when logged in. -> COMPLETED
+- Delete Item functionality inside edit item pop up -> IN PROGRESS
+- Make Modal Pop-up to add new item -> IN PROGRESS
+- Save and upload item to Firebase. -> IN PROGRESS
+- Update user limits, preferences. -> TO DO
+- Update Progress Bar based on user limits and usage -> TO DO
 
 
 */
