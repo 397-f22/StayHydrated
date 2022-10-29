@@ -11,7 +11,7 @@ import AddItemModal  from './Components/AddItemModal.jsx';
 
 
 function App() {
-  const [volume, setVolume] = useState(50);
+  const [volume, setVolume] = useState(0);
   const [products, loading, error] = useData('/Products/'); 
   const [user] = useUserState();
 
@@ -26,12 +26,17 @@ function App() {
   if (error) return <h1>{error}</h1>;
   if (loading) return <h1>Loading the products...</h1>
 
+  const goal = 3.7;
+  const total_volume = Object.entries(products).reduce((prev, cur) => parseFloat(cur[1].quantity) * parseFloat(cur[1].volume) + prev , 0)/1000;
+  console.log(total_volume)
+
   return (
     <div>
       <Navigation />
       { user ? <button style={{marginTop: "4px"}} className="ms-medium btn btn-dark m-1 p-2" onClick={openModal}>Add Item</button> : <> </> }
       { user ? <button style={{marginTop: "4px"}} className="ms-medium btn btn-dark m-1 p-2" onClick={openProfileModal}>Profile</button> : <> </> }
-      <ProgressBar volume={volume}></ProgressBar>
+      <h3 className="d-inline-flex justify-items-center ">{total_volume} / {goal} L</h3>
+      <ProgressBar volume={(total_volume/ goal * 100).toFixed(1)}></ProgressBar>
       <div className='container'>
         <LiquidCardList products={products} />
       </div>

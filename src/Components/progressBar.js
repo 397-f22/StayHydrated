@@ -2,6 +2,7 @@ import React from "react";
 import "./progressBar.css";
 
 const ProgressBar = ({ volume }) => {
+  volume = Math.min(100, volume);
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
       <div className="progressContainer" >
