@@ -1,41 +1,44 @@
-import logo from './logo.svg';
 import './App.css';
 import Navigation from './Navigation';
 import ProgressBar from './Components/progressBar';
-import LiquidCard from './Components/liquidCard';
-
-import waterBottle from './Components/pngs/water-bottle.png'
-import waterGlass from './Components/pngs/water-glass.png'
-import waterBarrel from './Components/pngs/water-barrel.png'
-
-import coffee from './Components/pngs/coffee-cup.png'
-import milk from './Components/pngs/milk.png'
-import tea from './Components/pngs/tea.png'
-import orangeJuice from './Components/pngs/orange-juice.png'
-
-import sodaCan from './Components/pngs/soda-can.png'
-import sodaBottle from './Components/pngs/soda.png'
+import LiquidCardList from "./Components/LiquidCardList"
 import { useState } from "react"
+import {useData } from './utilities/firebase.js';
+
 
 function App() {
   const [volume, setVolume] = useState(50);
+  const [products, loading, error] = useData('/Products/'); 
+
+  if (error) return <h1>{error}</h1>;
+  if (loading) return <h1>Loading the products...</h1>
+
   return (
     <div>
       <Navigation />
       <ProgressBar volume={volume}></ProgressBar>
       <div className='container'>
-        <LiquidCard icon={waterBottle} volume={500}/>
-        <LiquidCard icon={waterBarrel} volume={2000}/>
-        <LiquidCard icon={sodaCan} volume={300}/>
-        <LiquidCard icon={sodaBottle} volume={500}/>
-        <LiquidCard icon={coffee} volume={500}/>
-        <LiquidCard icon={milk} volume={1000}/>
-        <LiquidCard icon={tea} volume={500}/>
-        <LiquidCard icon={orangeJuice} volume={500}/>
+        <LiquidCardList products={products} />
       </div>
 
     </div>
   );
 }
 
+
 export default App;
+
+
+/*
+
+-- TO DO:
+- Make Firebase catalog of items drinking with values, img.
+- Fetch Items from DB and display them in list way.
+- Allow Editing of the items from the DB when logged in.
+- Make Modal Pop-up to add new item, get images from Firebase to add.
+- Save and upload item to Firebase.
+- Update Progress Bar.
+- Update user limits, preferences.
+
+
+*/
