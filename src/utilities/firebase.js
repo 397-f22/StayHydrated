@@ -73,7 +73,7 @@ export const useUserState = () => {
 
 const generateResult = (error) => {
   const timestamp = Date.now();
-  const message = error?.message || `Updated course at: ${new Date(timestamp).toLocaleString()}`;
+  const message = error?.message || `Updated item at: ${new Date(timestamp).toLocaleString()}`;
   return { timestamp, error, message };
 };
 
