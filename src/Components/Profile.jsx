@@ -42,7 +42,7 @@ export const Profile = () => {
                 {/* <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100px'}}> */}
                 <div style={{marginTop: "15px"}}><p className="ms-auto" id="welcome">Hello{user ? ` ${user.displayName}` : ", please sign in to continue"}</p></div>
                 {/* </div> */}
-                {user && <InputField name="dailyGoal" text="Set Your Daily Goal in Liters"/>}
+                {/* {user && <InputField name="dailyGoal" text="Set Your Daily Goal in Liters"/>} */}
                 <div>{ user ? <SignOutButton /> : <SignInButton /> }</div>        
                 {/* </div> */}
             </div>
