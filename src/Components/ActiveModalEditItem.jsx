@@ -50,7 +50,7 @@ const validateInput = (quantity, volume) => {
     return (
         <div>
             <div className = "d-inline-flex flex-column align-items-center">
-                <h1>Edit {product.name}:</h1>
+                <h1>Edit {product.category}:</h1>
             </div>
             <form onSubmit={submit} noValidate className={state.errors ? "was-validated" : null} >
                 {/* <InputField name="quantity" text="Quantity" state={state} change={change}/> */}
