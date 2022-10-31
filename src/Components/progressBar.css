@@ -1,0 +1,20 @@
+.progressContainer {
+  height: 20px;
+  width: 80%;
+  background-color: #e0e0de;
+  border-radius: 50px;
+  margin: 35px;
+}
+/* backgroundColor and width inline */
+.filler {
+  height: 100%;
+  border-radius: inherit;
+  background-color: #ADD8E6;
+  text-align: right;
+}
+
+.label {
+  padding: 5px;
+  color: white;
+  font-weight: bold;
+}

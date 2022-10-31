@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
+
 .App {
   text-align: center;
 }
@@ -6,6 +8,36 @@
   height: 40vmin;
   pointer-events: none;
 }
+
+h1 {
+  font-family: "Pacifico";
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.liquidCard {
+  flex: 50%;
+  margin-top: 5px;
+  margin-bottom:40px;
+  /* box-shadow: 0 0 0 1px black; */
+}
+
+.liquidCard h5 {
+  font-size: 16px;
+}
+
+.mainView {
+    display: grid;
+    grid-template-rows: 70px calc(100vh - 140px) 70px; 
+}
+
+.tracking {
+  overflow-y: scroll;
+}
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
