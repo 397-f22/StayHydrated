@@ -37,12 +37,13 @@ const validateInput = (quantity, volume) => {
     }
   };
 
-  const AddItemModal = ({count}) => {
-    const [update, result] = useDbUpdate(`/Products/`);
+  const AddItemModal = ({count, uid}) => {
+    const [update, result] = useDbUpdate(`/Products/${uid}`);
     //const [state, change] = useFormData(validateInput, product);
-    // const [state, change] = useState({values:{category: "", img_url: "", name: "", quantity: 0, volume: 0}});
+    const [state, change] = useState({values:{category: "", img_url: "", name: "", quantity: 0, volume: 0}});
 
-    const submitData = () => {
+    const submitData = (evt) => {
+      evt.preventDefault();
       const vol = document.getElementById("volume_new").value;
       const catalog = document.getElementById("category_new").value;
       
@@ -66,6 +67,8 @@ const validateInput = (quantity, volume) => {
             
                 <h1>Add new item:</h1>
                 <form >  
+                {/* <InputField name="volume" text="Volume (mL)" state={state} change={change}/>
+                <InputField name="category" text="Category" state={state} change={change} /> */}
                   Volume (mL):
                   <input id="volume_new" name="volume" text="Volume (mL)"  />
                   Category:

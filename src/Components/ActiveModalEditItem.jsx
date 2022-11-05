@@ -36,13 +36,15 @@ const validateInput = (quantity, volume) => {
     }
   };
 
-  const ActiveModalEditItem = ({product}) => {
-    const [update, result] = useDbUpdate(`/Products/${product.name}`);
+  const ActiveModalEditItem = ({product, uid}) => {
+    const [update, result] = useDbUpdate(`/Products/${uid}/${product.name}`);
     const [state, change] = useFormData(validateInput, product);
-    //console.log(state)
+    //console.log(product)
     const submit = (evt) => {
       evt.preventDefault();
       if (!state.errors) {
+        console.log(uid);
+        console.log(state.values)
         update(state.values);
       }
     };

@@ -27,8 +27,8 @@ import minusButton from './pngs/minus.png'
 
 
 const LiquidCard = ({product}) => {
-  const [update, result] = useDbUpdate(`/Products/${product.name}`);
   const [user] = useUserState();
+  const [update, result] = useDbUpdate(`/Products/${user ? user.uid: 0  }/${product.name}`);
   const [open, setOpen] = useState(false);
   const openModal = () => setOpen(true);
   const closeModal = () => setOpen(false);
@@ -48,7 +48,7 @@ const LiquidCard = ({product}) => {
                 </div>
                 {/* { user ? <button style={{marginTop: "4px"}} className="ms-medium btn btn-dark m-1 p-2" onClick={openModal}>Edit</button> : <></> } */}
                 <Modal open={open} close={closeModal}>
-                <ActiveModalEditItem product={product} />
+                <ActiveModalEditItem product={product} uid = {user ? user.uid : 0}/>
                 </Modal>
             </div>
         </div>
