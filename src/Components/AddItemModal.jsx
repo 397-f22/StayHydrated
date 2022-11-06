@@ -1,5 +1,6 @@
 import { useFormData } from '../utilities/useFormData';
-import { useDbUpdate } from '../utilities/firebase';
+import { useDbUpdate, useData } from '../utilities/firebase';
+import {useState} from 'react';
 
 const InputField = ({ name, text, state, change }) => (
     <div className="mb-3">
@@ -36,12 +37,47 @@ const validateInput = (quantity, volume) => {
     }
   };
 
-  const AddItemModal = () => {
+  const AddItemModal = ({count, uid}) => {
+    const [update, result] = useDbUpdate(`/Products/${uid}`);
+    //const [state, change] = useFormData(validateInput, product);
+    const [state, change] = useState({values:{category: "", img_url: "", name: "", quantity: 0, volume: 0}});
+
+    const submitData = (evt) => {
+      evt.preventDefault();
+      const vol = document.getElementById("volume_new").value;
+      const catalog = document.getElementById("category_new").value;
+      
+      // const quantity = document.getElementById("quantity").value;
+      const jsonObj = {
+        [count]: {
+          category: catalog,
+          img_url: "",
+          name: count,
+          quantity: 0,
+          volume: vol
+        },
+      };
   
+      update(jsonObj);
+    }
+
     return (
-        <div>
+        <div className='text-center'>
             <div className = "d-inline-flex flex-column align-items-center">
+            
                 <h1>Add new item:</h1>
+                <form >  
+                {/* <InputField name="volume" text="Volume (mL)" state={state} change={change}/>
+                <InputField name="category" text="Category" state={state} change={change} /> */}
+                  Volume (mL):
+                  <input id="volume_new" name="volume" text="Volume (mL)"  />
+                  Category:
+                  <input id="category_new" name ="category" text="Category" />
+                  <button  
+                    type="submit"
+                    value="Submit"
+                    onClick={submitData}>Submit</button>
+                </form>
             </div>
       </div>
     );
