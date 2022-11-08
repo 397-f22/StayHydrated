@@ -12,6 +12,10 @@
 h1 {
   font-family: "Pacifico";
 }
+h2 {
+  font-family: "Pacifico";
+  font-size: 3px;
+}
 
 .container {
   display: flex;
@@ -54,6 +58,14 @@ h1 {
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+.vertical-center {
+  margin: 50px;
+  position: absolute;
+  top: 30%;
+  right: 50%;
+  -ms-transform: translateY(-30%);
+  transform: translateY(-10%);
 }
 
 .App-link {

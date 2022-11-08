@@ -1,5 +1,6 @@
 import './App.css';
 import Navigation from './Navigation';
+import {SignInButton} from './Navigation';
 import NavigationBottom from './Components/NavigationBottom';
 import ProgressBar from './Components/progressBar';
 import LiquidCardList from "./Components/LiquidCardList"
@@ -45,8 +46,13 @@ function App() {
 
   if (error) return <h1>{error}</h1>;
   if (loading) return <h1>Loading the products...</h1>
+  const UserLogin = user?true:false;
+  const goal = 3.0;
+  let total_volume = 0;
+  console.log(UserLogin)
   if (user != null) {
     console.log(products)
+    // initialize new user
     if (Object.entries(products).includes(user.uid)) {
       const jsonObj = {
         [user.uid]:{
@@ -80,17 +86,50 @@ function App() {
           }
         }
       };
-
+      total_volume = Object.entries(products[user.uid]).reduce((prev, cur) => parseFloat(cur[1].quantity) * parseFloat(cur[1].volume) + prev , 0)/1000;
+      update(jsonObj);
+    }else{
+      const jsonObj = {
+        [user.uid]:{
+          [0]: {
+            category: "Water",
+            img_url: "https://cdn-icons-png.flaticon.com/512/4507/4507444.png",
+            name: 0,
+            quantity: 0,
+            volume: 500
+          },
+          [1]: {
+            category: "Soda",
+            img_url: "https://cdn-icons-png.flaticon.com/512/2722/2722527.png",
+            name: 1,
+            quantity: 0,
+            volume: 500
+          },
+          [2]: {
+            category: "Coffee",
+            img_url: "https://cdn-icons-png.flaticon.com/512/1047/1047503.png",
+            name: 2,
+            quantity: 0,
+            volume: 500
+          },
+          [3]: {
+            category: "Tea",
+            img_url: "https://cdn-icons-png.flaticon.com/512/4670/4670086.png",
+            name: 3,
+            quantity: 0,
+            volume: 500
+          }
+        }
+      };
       update(jsonObj);
     }
-  }
-  const goal = 3.0;
-  let total_volume = 0;
-  if (user != null) {
-    total_volume = Object.entries(products[user.uid]).reduce((prev, cur) => parseFloat(cur[1].quantity) * parseFloat(cur[1].volume) + prev , 0)/1000;
+
   }
   
+ 
+  
   return (
+    user?
     <div className="mainView">
       <Navigation profileClick={ProfileClick}/>
       {showProfile && <Profile/>}
@@ -115,6 +154,14 @@ function App() {
       }
       {showSummary && <Summary/>}
       <NavigationBottom trackingClick={TrackingClick} profileClick={ProfileClick} summaryClick={SummaryClick} />
+    </div>
+    :
+    <div className = "HomePage" style={{ background: "#ADD8E6", backgroundColor: "#ADD8E6", height: "200px", marginTop:"150px"}}>
+      <div style={{marginLeft:"150px"}}>
+        <h1 style={{color: "white"}}> Stay Hydrated </h1>
+        <h2 style={{color: "black", fontSize: "15px"}}> Record your daily hydration </h2>
+        <SignInButton style={{color: "white", marginTop:"120px"}}/>
+      </div>
     </div>
   );
 }
