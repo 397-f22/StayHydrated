@@ -110,8 +110,7 @@ function App() {
           </div>
 
           <div className='container'>
-            {console.log(user.uid)}
-            {user.uid != null && Object.keys(products).includes(user.uid) ? <LiquidCardList products={products[user.uid]} /> : <Profile />}
+            {user != null && Object.keys(products).includes(user.uid) ? <LiquidCardList products={products[user.uid]} /> : <Profile />}
             {/* <LiquidCardList products={products[user ? user.uid : ""]} /> */}
           </div>
           <Modal open={open} close={closeModal}><AddItemModal count={Object.entries(products).length} uid={user ? user.uid : 0}> </AddItemModal></Modal>
