@@ -81,7 +81,7 @@ const LiquidCard = ({ product }) => {
         </div>
         {/* { user ? <button style={{marginTop: "4px"}} className="ms-medium btn btn-dark m-1 p-2" onClick={openModal}>Edit</button> : <></> } */}
         <Modal open={open} close={closeModal}>
-          <ActiveModalEditItem product={product} uid={user ? user.uid : 0} />
+          <ActiveModalEditItem close={closeModal} product={product} uid={user ? user.uid : 0} />
         </Modal>
       </div>
     </div>
