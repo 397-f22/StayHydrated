@@ -51,6 +51,8 @@ const validateInput = (quantity, volume) => {
 
     const [deleteupdate, result2] = useDbUpdate(`/Products/${uid}`);
     const deleteid = (evt) => {
+      evt.preventDefault();
+      console.log("delete", product.name)
       const jsonObj = {[product.name]:null};
       deleteupdate(jsonObj);
     }
