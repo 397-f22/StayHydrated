@@ -105,7 +105,7 @@ function App() {
 
           {user ? <ProgressBar volume={(total_volume / goal * 100).toFixed(1)}></ProgressBar> : ""}
           <div style={{ width: "80vw", display: "flex", justifyContent: "space-between", alignItems: "center", margin: "auto", marginTop: "-20px", marginBottom: "20px" }}>
-            <h3>{total_volume.toFixed(1)} L / {goal.toFixed(1)} L</h3>
+            {user ? <h3>{total_volume.toFixed(1)} L / {goal.toFixed(1)} L</h3> : ""}
             {user && Object.keys(products).includes(user.uid) ? <input type="image" src={add} style={{ height: "25px", marginTop: "-8px" }} onClick={openModal} /> : <> </>}
           </div>
 
