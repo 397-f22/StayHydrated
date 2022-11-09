@@ -1,5 +1,5 @@
 import { useFormData } from '../utilities/useFormData';
-import { useDbUpdate } from '../utilities/firebase';
+import { useDbUpdate, useData, useDbDelete } from '../utilities/firebase';
 
 const InputField = ({ name, text, state, change }) => (
     <div className="mb-3">
@@ -48,6 +48,12 @@ const validateInput = (quantity, volume) => {
         update(state.values);
       }
     };
+
+    const [deleteupdate, result2] = useDbUpdate(`/Products/${uid}`);
+    const deleteid = (evt) => {
+      const jsonObj = {[product.name]:null};
+      deleteupdate(jsonObj);
+    }
   
     return (
         <div>
@@ -65,6 +71,7 @@ const validateInput = (quantity, volume) => {
                     </div>
                 </div>
                 <ButtonBar message={result?.message} />
+                <button onClick={deleteid}>Delete</button>
             </form>
       </div>
     );

@@ -88,4 +88,9 @@ export const useDbUpdate = (path) => {
   return [updateData, result];
 };
 
+export const useDbDelete = (userid, product) => {
+  // const ref = database.getInstance().getReference();
+  database.ref(`"/${userid}/${product}"`).remove();
+}
+
 export { firebaseSignOut as signOut };

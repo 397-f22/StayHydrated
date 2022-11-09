@@ -133,7 +133,7 @@ export default App;
 - Make Firebase catalog of items drinking with values, img. -> COMPLETED
 - Fetch Items from DB and display them in list way. -> COMPLETED
 - Allow Editing of the items from the DB when logged in. -> COMPLETED
-- Delete Item functionality inside edit item pop up -> IN PROGRESS
+- Delete Item functionality inside edit item pop up -> COMPLETED
 - Make Modal Pop-up to add new item -> IN PROGRESS
 - Save and upload item to Firebase. -> IN PROGRESS
 - Update user limits, preferences. -> TO DO
