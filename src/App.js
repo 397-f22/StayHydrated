@@ -113,7 +113,7 @@ function App() {
             {user != null && Object.keys(products).includes(user.uid) ? <LiquidCardList products={products[user.uid]} /> : <Profile />}
             {/* <LiquidCardList products={products[user ? user.uid : ""]} /> */}
           </div>
-          <Modal open={open} close={closeModal}><AddItemModal count={Object.entries(products).length} uid={user ? user.uid : 0}> </AddItemModal></Modal>
+          <Modal open={open} close={closeModal}><AddItemModal  close={closeModal} count={Object.entries(products).length} uid={user ? user.uid : 0}> </AddItemModal></Modal>
           {/* <Modal open={profileOpen} close={closeProfileModal}><Profile/></Modal> */}
         </div>
       }
