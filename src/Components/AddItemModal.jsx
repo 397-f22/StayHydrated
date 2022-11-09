@@ -65,6 +65,8 @@ const validateInput = (quantity, volume) => {
       update(jsonObj);
     }
 
+    const [url, setUrl] = useState("https://cdn-icons-png.flaticon.com/512/4507/4507444.png");
+
     return (
         <div className='text-center'>
             <div className = "d-inline-flex flex-column align-items-center">
@@ -80,7 +82,7 @@ const validateInput = (quantity, volume) => {
                   <input id="category_new" name ="category" text="Category" />
                   <br/>
                   Image:
-                  <select class="form-select" name="images" id="images">
+                  <select class="form-select" name="images" id="images" onChange={(ev) => setUrl(ev.target.value)}>
                     <option value="https://cdn-icons-png.flaticon.com/512/4507/4507444.png">Water</option>
                     <option value="https://cdn-icons-png.flaticon.com/512/2722/2722527.png">Soda</option>
                     <option value="https://cdn-icons-png.flaticon.com/512/869/869460.png">Milk</option>
@@ -93,7 +95,7 @@ const validateInput = (quantity, volume) => {
                     <option value="https://cdn-icons-png.flaticon.com/512/454/454570.png">Soup</option>
                   </select>
                   {document.getElementById("images")?
-                  <img src={document.getElementById("images").value} style={{marginTop: "4px", height: "100px"}} alt="new"></img>
+                  <img src={url} style={{marginTop: "4px", height: "100px"}} alt="new"></img>
                   :""}
                   <br/>
                   <button  
