@@ -18,6 +18,9 @@ function App() {
   const [products, loading, error] = useData('/Products');
   const [user] = useUserState();
   const [update, result] = useDbUpdate(`/Products/`);
+  const [updateday, resultday] = useDbUpdate(`/Products/${user?.uid}/Days/`);
+
+  
 
   const [open, setOpen] = useState(false);
   const openModal = () => setOpen(true);
@@ -47,10 +50,21 @@ function App() {
       if (!Object.keys(products).includes(user.uid)) {
         const today = new Date();
         console.log(today.toString())
+        
         const jsonObj = {
           [user.uid]: {
             ["Date"]: {
               date: today.toString()
+            },
+            ["goal"]:3.0,
+            ["days"]:{
+              [0]:0.0,
+              [1]:0.0,
+              [2]:0.0,
+              [3]:0.0,
+              [4]:0.0,
+              [5]:0.0,
+              [6]:0.0
             },
             [0]: {
               category: "Water",
@@ -91,12 +105,38 @@ function App() {
   if (error) return <h1>{error}</h1>;
   if (loading) return <h1>Loading the products...</h1>
 
-
-  const goal = 3.0;
+  const calTotalvol = (products) => {
+    return Object.values(products)
+    .filter(x => x["category"])
+    .reduce(
+      (prev, cur) => {switch(cur.img_url){
+        // alcohol 50%
+        case 'https://cdn-icons-png.flaticon.com/512/920/920541.png':
+          // console.log("cal", cur.quantity, cur.volume);
+          return (parseFloat(cur.quantity) * parseFloat(cur.volume) * 0.5 + prev);
+        // cafe 85%
+        case "https://cdn-icons-png.flaticon.com/512/1047/1047503.png":
+        case "https://cdn-icons-png.flaticon.com/512/3504/3504747.png":
+          // console.log("cal", cur.quantity, cur.volume);
+          return (parseFloat(cur.quantity) * parseFloat(cur.volume) * 0.5 + prev);
+        default:
+          // console.log("cal", cur.img_url);
+          return (parseFloat(cur.quantity) * parseFloat(cur.volume) + prev);
+      }}
+       , 0) / 1000;
+  }
+  
   let total_volume = 0;
-
+  let goal = 3.0;
+  const curday = new Date().getDay();
+  
   if (user != null && Object.keys(products).includes(user.uid)) {
-    total_volume = Object.entries(products[user.uid]).filter(x => x[0] != "Date").reduce((prev, cur) => parseFloat(cur[1].quantity) * parseFloat(cur[1].volume) + prev, 0) / 1000;
+    goal = products[user.uid]["goal"];
+    total_volume = calTotalvol(products[user.uid])
+    console.log("total volume",total_volume)
+    console.log("curday", curday);
+    updateday({[curday]:Number(total_volume)} );
+    // total_volume = Object.entries(products[user.uid]).filter(x => x[0] != "Date").reduce((prev, cur) => parseFloat(cur[1].quantity) * parseFloat(cur[1].volume) + prev, 0) / 1000;
     const curDate = new Date();
     console.log(curDate);
     // console.log(products[user.uid]["Date"].date)
