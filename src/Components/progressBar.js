@@ -1,7 +1,7 @@
 import React from "react";
 import "./progressBar.css";
 
-const ProgressBar = ({ volume }) => {
+const ProgressBar = ({volume , user, total_volume, goal} ) => {
   volume = Math.min(100, volume);
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
@@ -10,6 +10,7 @@ const ProgressBar = ({ volume }) => {
           <span className="label" >{volume}%</span>
         </div>
       </div>
+      {user ? <h1 className="text-align-center">{total_volume.toFixed(1)} / {goal.toFixed(1)} L</h1> : ""}
     </div>
   );
 };

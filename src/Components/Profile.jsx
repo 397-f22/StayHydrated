@@ -153,14 +153,15 @@ export const Profile  = () => {
         update(jsonObj);
       }
       
-      document.getElementById('edit goal').innerHTML ='<button id="edit_button" type="submit" className="btn btn-outline" >Edit Your Goal</button>';
+      document.getElementById('edit goal').innerHTML ='<button id="edit_button" type="submit" className="ms-auto btn btn-dark m-1 p-2" >Edit Goal</button>';
       document.getElementById('edit_button').onclick=edit;
     }
+
 
     const edit = (evt) =>{
       evt.preventDefault();
       document.getElementById('edit goal').innerHTML = '<span> Daily Goal: <input id="goal" type="text"><small>(L)</small></span>\r\n'
-      +'<button id="submit_button" type="submit" className="btn btn-outline">submit</button>'; 
+      +'<button id="submit_button" type="submit" className="ms-auto btn btn-dark m-1 p-2">submit</button>'; 
       document.getElementById('submit_button').onclick=submit;    
 
     }
@@ -178,13 +179,12 @@ export const Profile  = () => {
                 {/* <div className = "d-inline-flex flex-column align-items-center"> */}
                 {/* <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100px'}}> */}
                 <div style={{marginTop: "15px"}}>
-                  <p className="ms-auto" id="welcome">Hello{user ? ` ${user.displayName}, your daily hydration goal is ${profile[user.uid]["goal"]} L` : ", please sign in to continue"}</p>
+                  <p className="ms-auto" id="welcome">Hello{user ? ` ${user.displayName}, your daily hydration goal is ${profile[user.uid]["goal"]} L.` : ", please sign in to continue"}</p>
                   
                 </div>
                 <div id="edit goal">{
-                  user?<button id="edit_button" type="submit" className="btn btn-outline" onClick={edit}>Edit Your Goal</button>:""
-                }</div>
-                
+                  user?<button id="edit_button" type="submit" className="ms-auto btn btn-dark m-1 p-2" onClick={edit}>Edit Goal</button> :""}</div>
+
                 <div id="show chart" style={{height:"350px", width:"540px"}}>{
                   user?<BarChart datas={Object.values(profile[user.uid]["Days"])}></BarChart>:""
                   //  user?<button id="show_button" type="submit" className="btn btn-outline" onClick={show}>Show Record</button>:""

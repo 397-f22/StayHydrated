@@ -2,19 +2,14 @@ import React, { useState } from "react";
 import { useUserState } from "../utilities/firebase";
 import Modal from "./Modal";
 import ActiveModalEditItem from "./ActiveModalEditItem";
-import { useDbUpdate, useData } from "../utilities/firebase";
+import { useDbUpdate } from "../utilities/firebase";
 
 import addButton from "./pngs/plus.png";
 import minusButton from "./pngs/minus.png";
 
-// const AddToBar = (id, quantity, update) => {
-//     update({"quantity": quantity + 1})
-//     // console.log(product.volume);
-//     /*
-//     setCount(count+1);
-//     return volume;
-//     */
-// };
+const addItem = (id, quantity, update) => {
+
+};
 
 // const SubtractFromBar = (id, quantity, update) => {
 //     update({"quantity": quantity - 1})
@@ -25,9 +20,9 @@ import minusButton from "./pngs/minus.png";
 //     */
 // };
 
-const LiquidCard = ({ product }) => {
+const LiquidCard = ({ product, total_volume, goal }) => {
   const [user] = useUserState();
-  const [update, result] = useDbUpdate(
+  const [update] = useDbUpdate(
     `/Products/${user ? user.uid : 0}/${product.name}`
   );
   const [open, setOpen] = useState(false);
@@ -51,14 +46,11 @@ const LiquidCard = ({ product }) => {
           className="d-flex justify-content-around column g-5"
           style={{ marginTop: "10px" }}
         >
-          <input
-            type="image"
-            src={minusButton}
-            style={{ height: "25px" }}
-            onClick={() =>
+
+          <input type="image" id="image" alt="minusBtn" style={{ height: "25px" }} src={minusButton} onClick= {() =>
               update({ quantity: Math.max(0, product.quantity - 1) })
-            }
-          />
+            }/>
+        
           <div
             style={{
               width: "40px",
@@ -70,14 +62,11 @@ const LiquidCard = ({ product }) => {
           >
             <h5>{product.quantity}</h5>
           </div>
-          <input
-            type="image"
-            src={addButton}
-            style={{ height: "25px" }}
-            onClick={() =>
-              update({ quantity: Math.max(0, product.quantity + 1) })
-            }
-          />
+
+          <input type="image" id="image" alt="addBtn" style={{ height: "25px" }} src={addButton} onClick={() =>
+              update({ quantity: total_volume < goal ? product.quantity + 1 : product.quantity })
+            }/>
+
         </div>
         {/* { user ? <button style={{marginTop: "4px"}} className="ms-medium btn btn-dark m-1 p-2" onClick={openModal}>Edit</button> : <></> } */}
         <Modal open={open} close={closeModal}>

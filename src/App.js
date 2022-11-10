@@ -152,43 +152,17 @@ function App() {
       {showProfile && <Profile />}
       {showTracking &&
         <div className='tracking'>
-          {/* { user ? <button style={{marginTop: "4px"}} className="ms-medium btn btn-dark m-1 p-2" onClick={openProfileModal}>Profile</button> : <> </> } */}
-
-          {user ? <ProgressBar volume={(total_volume / goal * 100).toFixed(1)}></ProgressBar> : ""}
-          <div style={{ width: "80vw", display: "flex", justifyContent: "space-between", alignItems: "center", margin: "auto", marginTop: "-20px", marginBottom: "20px" }}>
-            {user ? <h3>{total_volume.toFixed(1)} L / {goal.toFixed(1)} L</h3> : ""}
-            {user && Object.keys(products).includes(user.uid) ? <input type="image" src={add} style={{ height: "25px", marginTop: "-8px" }} onClick={openModal} /> : <> </>}
-          </div>
-
-          <div className='container'>
-            {user != null && Object.keys(products).includes(user.uid) ? <LiquidCardList products={products[user.uid]} /> : <Profile />}
-            {/* <LiquidCardList products={products[user ? user.uid : ""]} /> */}
+          {user ? <ProgressBar volume={(total_volume / goal * 100).toFixed(1)} user = {user} total_volume = {total_volume} goal = {goal}></ProgressBar> : ""}
+          <div className='justify-content-space-evenly'>
+            {user != null && Object.keys(products).includes(user.uid) ? <LiquidCardList products={products[user.uid]} total_volume = {total_volume} goal = {goal} /> : <Profile />}
           </div>
           <Modal open={open} close={closeModal}><AddItemModal close={closeModal} count={Object.entries(products).length} uid={user ? user.uid : 0}> </AddItemModal></Modal>
-          {/* <Modal open={profileOpen} close={closeProfileModal}><Profile/></Modal> */}
         </div>
       }
       {showSummary && <Summary />}
-      <NavigationBottom trackingClick={TrackingClick} profileClick={ProfileClick} summaryClick={SummaryClick} />
+      <NavigationBottom user = {user} products = {products} trackingClick={TrackingClick} profileClick={ProfileClick} addItemClick={openModal} />
     </div>
   );
 }
 
-
 export default App;
-
-
-/*
-
--- TO DO:
-- Make Firebase catalog of items drinking with values, img. -> COMPLETED
-- Fetch Items from DB and display them in list way. -> COMPLETED
-- Allow Editing of the items from the DB when logged in. -> COMPLETED
-- Delete Item functionality inside edit item pop up -> COMPLETED
-- Make Modal Pop-up to add new item -> IN PROGRESS
-- Save and upload item to Firebase. -> IN PROGRESS
-- Update user limits, preferences. -> TO DO
-- Update Progress Bar based on user limits and usage -> TO DO
-
-
-*/
