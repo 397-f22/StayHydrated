@@ -6,10 +6,11 @@ const LiquidCardList = ({ products }) => {
   return (
     <>
       <div className="btn-toolbar justify-content-between">
+        {console.log(Object.values(products))}
         {Object.values(products).length > 0 ? (
-          Object.values(products).map((product) => (
-            <LiquidCard product={product}></LiquidCard>
-          ))
+          Object.values(products)
+            .filter((x) => x.category != null)
+            .map((product) => <LiquidCard product={product}></LiquidCard>)
         ) : (
           <h1>
             Oops, it seems that you have no items. Click on the 'Add Item'
