@@ -45,8 +45,13 @@ function App() {
   useEffect(() => {
     if (user && products) {
       if (!Object.keys(products).includes(user.uid)) {
+        const today = new Date();
+        console.log(today.toString())
         const jsonObj = {
           [user.uid]: {
+            ["Date"]: {
+              date: today.toString()
+            },
             [0]: {
               category: "Water",
               img_url: "https://cdn-icons-png.flaticon.com/512/4507/4507444.png",
@@ -90,9 +95,15 @@ function App() {
   const goal = 3.0;
   let total_volume = 0;
 
-
   if (user != null && Object.keys(products).includes(user.uid)) {
-    total_volume = Object.entries(products[user.uid]).reduce((prev, cur) => parseFloat(cur[1].quantity) * parseFloat(cur[1].volume) + prev, 0) / 1000;
+    total_volume = Object.entries(products[user.uid]).filter(x => x[0] != "Date").reduce((prev, cur) => parseFloat(cur[1].quantity) * parseFloat(cur[1].volume) + prev, 0) / 1000;
+    const curDate = new Date();
+    console.log(curDate);
+    // console.log(products[user.uid]["Date"].date)
+    const prevDate = new Date(products[user.uid]["Date"].date);
+    console.log(prevDate);
+    const diff = Math.abs(curDate - prevDate) / 36e5;
+    console.log(diff);
   }
   console.log(products)
   return (
@@ -113,7 +124,7 @@ function App() {
             {user != null && Object.keys(products).includes(user.uid) ? <LiquidCardList products={products[user.uid]} /> : <Profile />}
             {/* <LiquidCardList products={products[user ? user.uid : ""]} /> */}
           </div>
-          <Modal open={open} close={closeModal}><AddItemModal count={Object.entries(products).length} uid={user ? user.uid : 0}> </AddItemModal></Modal>
+          <Modal open={open} close={closeModal}><AddItemModal close={closeModal} count={Object.entries(products).length} uid={user ? user.uid : 0}> </AddItemModal></Modal>
           {/* <Modal open={profileOpen} close={closeProfileModal}><Profile/></Modal> */}
         </div>
       }

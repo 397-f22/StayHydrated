@@ -37,17 +37,18 @@ const validateInput = (quantity, volume) => {
     }
   };
 
-  const AddItemModal = ({count, uid}) => {
+  const AddItemModal = ({close, count, uid}) => {
     const [update, result] = useDbUpdate(`/Products/${uid}`);
     const [products, loading, error] = useData(`/Products/${uid}`);
     //const [state, change] = useFormData(validateInput, product);
     const [state, change] = useState({values:{category: "", img_url: "", name: "", quantity: 0, volume: 0}});
 
     const submitData = (evt) => {
+      close();
       evt.preventDefault();
       const vol = document.getElementById("volume_new").value;
       const catalog = document.getElementById("category_new").value;
-      const img = document.getElementById("img_new").value;
+      const img = document.getElementById("images").value;
       const id = Object.values(products).pop().name;
       
       // const quantity = document.getElementById("quantity").value;
@@ -64,6 +65,8 @@ const validateInput = (quantity, volume) => {
       update(jsonObj);
     }
 
+    const [url, setUrl] = useState("https://cdn-icons-png.flaticon.com/512/4507/4507444.png");
+
     return (
         <div className='text-center'>
             <div className = "d-inline-flex flex-column align-items-center">
@@ -78,10 +81,21 @@ const validateInput = (quantity, volume) => {
                   Category:
                   <input id="category_new" name ="category" text="Category" />
                   <br/>
-                  Image Url:
-                  <input id="img_new" name ="img url" text="image url" />
-                  {document.getElementById("img_new")?
-                  <img src={document.getElementById("img_new").value} style={{marginTop: "4px", height: "100px"}} alt="new"></img>
+                  Image:
+                  <select class="form-select" name="images" id="images" onChange={(ev) => setUrl(ev.target.value)}>
+                    <option value="https://cdn-icons-png.flaticon.com/512/4507/4507444.png">Water</option>
+                    <option value="https://cdn-icons-png.flaticon.com/512/2722/2722527.png">Soda</option>
+                    <option value="https://cdn-icons-png.flaticon.com/512/869/869460.png">Milk</option>
+                    <option value="https://cdn-icons-png.flaticon.com/512/920/920541.png">Alcohol</option>
+                    <option value="https://cdn-icons-png.flaticon.com/512/2442/2442019.png">Juice</option>
+                    <option value="https://cdn-icons-png.flaticon.com/512/2309/2309403.png">Lemonade</option>
+                    <option value="https://cdn-icons-png.flaticon.com/512/1047/1047503.png">Coffee</option>
+                    <option value="https://cdn-icons-png.flaticon.com/512/3504/3504747.png">Tea</option>
+                    <option value="https://cdn-icons-png.flaticon.com/512/1881/1881426.png">Energy Drinks</option>
+                    <option value="https://cdn-icons-png.flaticon.com/512/454/454570.png">Soup</option>
+                  </select>
+                  {document.getElementById("images")?
+                  <img src={url} style={{marginTop: "4px", height: "100px"}} alt="new"></img>
                   :""}
                   <br/>
                   <button  
