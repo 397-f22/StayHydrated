@@ -89,7 +89,7 @@ function App() {
             },
             [3]: {
               category: "Tea",
-              img_url: "https://cdn-icons-png.flaticon.com/512/4670/4670086.png",
+              img_url: "https://cdn-icons-png.flaticon.com/512/3504/3504747.png",
               name: 3,
               quantity: 0,
               volume: 500
@@ -133,62 +133,36 @@ function App() {
   if (user != null && Object.keys(products).includes(user.uid)) {
     goal = products[user.uid]["goal"];
     total_volume = calTotalvol(products[user.uid])
-    console.log("total volume",total_volume)
-    console.log("curday", curday);
+    // console.log("total volume",total_volume)
+    // console.log("curday", curday);
     updateday({[curday]:Number(total_volume)} );
     // total_volume = Object.entries(products[user.uid]).filter(x => x[0] != "Date").reduce((prev, cur) => parseFloat(cur[1].quantity) * parseFloat(cur[1].volume) + prev, 0) / 1000;
     const curDate = new Date();
-    console.log(curDate);
+    // console.log(curDate);
     // console.log(products[user.uid]["Date"].date)
     const prevDate = new Date(products[user.uid]["Date"].date);
-    console.log(prevDate);
+    // console.log(prevDate);
     const diff = Math.abs(curDate - prevDate) / 36e5;
-    console.log(diff);
+    // console.log(diff);
   }
-  console.log(products)
+  // console.log(products)
   return (
     <div className="mainView">
       <Navigation profileClick={ProfileClick} />
       {showProfile && <Profile />}
       {showTracking &&
         <div className='tracking'>
-          {/* { user ? <button style={{marginTop: "4px"}} className="ms-medium btn btn-dark m-1 p-2" onClick={openProfileModal}>Profile</button> : <> </> } */}
-
-          {user ? <ProgressBar volume={(total_volume / goal * 100).toFixed(1)}></ProgressBar> : ""}
-          <div style={{ width: "80vw", display: "flex", justifyContent: "space-between", alignItems: "center", margin: "auto", marginTop: "-20px", marginBottom: "20px" }}>
-            {user ? <h3>{total_volume.toFixed(1)} L / {goal.toFixed(1)} L</h3> : ""}
-            {user && Object.keys(products).includes(user.uid) ? <input type="image" src={add} style={{ height: "25px", marginTop: "-8px" }} onClick={openModal} /> : <> </>}
-          </div>
-
-          <div className='container'>
-            {user != null && Object.keys(products).includes(user.uid) ? <LiquidCardList products={products[user.uid]} /> : <Profile />}
-            {/* <LiquidCardList products={products[user ? user.uid : ""]} /> */}
+          {user ? <ProgressBar volume={(total_volume / goal * 100).toFixed(1)} user = {user} total_volume = {total_volume} goal = {goal}></ProgressBar> : ""}
+          <div className='justify-content-space-evenly'>
+            {user != null && Object.keys(products).includes(user.uid) ? <LiquidCardList products={products[user.uid]} total_volume = {total_volume} goal = {goal} /> : <Profile />}
           </div>
           <Modal open={open} close={closeModal}><AddItemModal close={closeModal} count={Object.entries(products).length} uid={user ? user.uid : 0}> </AddItemModal></Modal>
-          {/* <Modal open={profileOpen} close={closeProfileModal}><Profile/></Modal> */}
         </div>
       }
       {showSummary && <Summary />}
-      <NavigationBottom trackingClick={TrackingClick} profileClick={ProfileClick} summaryClick={SummaryClick} />
+      <NavigationBottom user = {user} products = {products} trackingClick={TrackingClick} profileClick={ProfileClick} addItemClick={openModal} />
     </div>
   );
 }
 
-
 export default App;
-
-
-/*
-
--- TO DO:
-- Make Firebase catalog of items drinking with values, img. -> COMPLETED
-- Fetch Items from DB and display them in list way. -> COMPLETED
-- Allow Editing of the items from the DB when logged in. -> COMPLETED
-- Delete Item functionality inside edit item pop up -> COMPLETED
-- Make Modal Pop-up to add new item -> IN PROGRESS
-- Save and upload item to Firebase. -> IN PROGRESS
-- Update user limits, preferences. -> TO DO
-- Update Progress Bar based on user limits and usage -> TO DO
-
-
-*/
