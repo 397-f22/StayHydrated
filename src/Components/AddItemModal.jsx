@@ -50,13 +50,14 @@ const validateInput = (quantity, volume) => {
       const catalog = document.getElementById("category_new").value;
       const img = document.getElementById("images").value;
       const id = Object.values(products).pop().name;
-      
+      const count = Object.entries(products).length;
+
       // const quantity = document.getElementById("quantity").value;
       const jsonObj = {
-        [id+1]: {
+        [count+1]: {
           category: catalog,
-          img_url: img,
-          name: id+1,
+          img_url: url,
+          name: count+1,
           quantity: 0,
           volume: vol
         },
