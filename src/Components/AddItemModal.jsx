@@ -99,7 +99,10 @@ const validateInput = (quantity, volume) => {
                   <img src={url} style={{marginTop: "4px", height: "100px"}} alt="new"></img>
                   :""}
                   <br/>
-                   <button className="ms-auto btn btn-dark m-1 p-2" onClick={() => submitData()}>Submit</button>
+                  <button  
+                    type="submit"
+                    value="Submit"
+                    onClick={submitData}>Submit</button>
                 </form>
             </div>
       </div>
