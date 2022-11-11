@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import {signInWithGoogle, signOut, useUserState, useData } from './utilities/firebase.js';
+import {signInWithGoogle, signOut, useUserState } from './utilities/firebase.js';
 
 export const SignInButton = () => (
     <button className="ms-auto btn btn-dark m-1 p-2"
