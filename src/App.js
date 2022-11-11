@@ -89,7 +89,7 @@ function App() {
             },
             [3]: {
               category: "Tea",
-              img_url: "https://cdn-icons-png.flaticon.com/512/4670/4670086.png",
+              img_url: "https://cdn-icons-png.flaticon.com/512/3504/3504747.png",
               name: 3,
               quantity: 0,
               volume: 500
@@ -133,19 +133,19 @@ function App() {
   if (user != null && Object.keys(products).includes(user.uid)) {
     goal = products[user.uid]["goal"];
     total_volume = calTotalvol(products[user.uid])
-    console.log("total volume",total_volume)
-    console.log("curday", curday);
+    // console.log("total volume",total_volume)
+    // console.log("curday", curday);
     updateday({[curday]:Number(total_volume)} );
     // total_volume = Object.entries(products[user.uid]).filter(x => x[0] != "Date").reduce((prev, cur) => parseFloat(cur[1].quantity) * parseFloat(cur[1].volume) + prev, 0) / 1000;
     const curDate = new Date();
-    console.log(curDate);
+    // console.log(curDate);
     // console.log(products[user.uid]["Date"].date)
     const prevDate = new Date(products[user.uid]["Date"].date);
-    console.log(prevDate);
+    // console.log(prevDate);
     const diff = Math.abs(curDate - prevDate) / 36e5;
-    console.log(diff);
+    // console.log(diff);
   }
-  console.log(products)
+  // console.log(products)
   return (
     <div className="mainView">
       <Navigation profileClick={ProfileClick} />
