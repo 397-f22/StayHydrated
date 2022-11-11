@@ -125,9 +125,9 @@ function BarChart(datas) {
     ]
   };
   return (
-    <div style={{ width: "300px", height: "150px"}}>
+    <div style={{ width: "200%", height: "200%"}}>
       <ReactEChart
-        style={{width: "200%", height: "200%" , paddingLeft: "50px", paddingRight: "100px"}}
+        style={{}}
         option={eChartsOption}
       />
     </div>
@@ -174,7 +174,7 @@ export const Profile  = () => {
 
       return (
         <div>
-            <div className = "d-inline-flex flex-column align-items-center" style={{paddingTop: "20px", width: "100vw"}}>
+            <div className = "d-inline-flex flex-column" style={{paddingTop: "20px", width: "100vw"}}>
                 <h1 style={{fontSize:"40px"}}>Profile</h1>
                 {/* <div className = "d-inline-flex flex-column align-items-center"> */}
                 {/* <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: '100px'}}> */}
@@ -183,16 +183,19 @@ export const Profile  = () => {
                   
                 </div>
                 <div id="edit goal">{
-                  user?<button id="edit_button" type="submit" className="ms-auto btn btn-dark m-1 p-2" onClick={edit}>Edit Goal</button> :""}</div>
+                  user?<button id="edit_button" type="submit" className="btn btn-outline" onClick={edit}>Edit Goal</button> :""}</div>
 
-                <div id="show chart" style={{height:"300px", width:"540px"}}>{
+                
+                <div id="show chart" style={{height:"300px", width:"200px"}}>{
                   user && profile[user.uid] != undefined ?<BarChart datas={Object.values(profile[user.uid]["Days"])}></BarChart>:""
                   //  user?<button id="show_button" type="submit" className="btn btn-outline" onClick={show}>Show Record</button>:""
                 }</div>
                 
+                <div>{ user ? <SignOutButton /> : <SignInButton /> }</div>  
+                
                 {/* </div> */}
         
-                <div>{ user ? <SignOutButton /> : <SignInButton /> }</div>        
+                      
                 {/* </div> */}
             </div>
       </div>

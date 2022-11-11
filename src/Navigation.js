@@ -3,7 +3,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import {signInWithGoogle, signOut, useUserState } from './utilities/firebase.js';
 
 export const SignInButton = () => (
-    <button className="ms-auto btn btn-dark m-1 p-2"
+    <button className="btn btn-dark"
         onClick={() => signInWithGoogle()}>
       Sign In
     </button>
@@ -11,7 +11,7 @@ export const SignInButton = () => (
   
   
   export const SignOutButton = () => (
-    <button className="ms-auto btn btn-dark m-1 p-2"
+    <button className="btn btn-dark"
         onClick={() => signOut()}>
       Sign Out
     </button>
