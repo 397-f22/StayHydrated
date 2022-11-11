@@ -57,14 +57,14 @@ function App() {
               date: today.toString()
             },
             ["goal"]:3.0,
-            ["days"]:{
+            ["Days"]:{
               [0]:0.0,
               [1]:0.0,
               [2]:0.0,
               [3]:0.0,
               [4]:0.0,
               [5]:0.0,
-              [6]:0.0
+              [6]:0.0,
             },
             [0]: {
               category: "Water",
@@ -134,8 +134,8 @@ function App() {
     goal = products[user.uid]["goal"];
     total_volume = calTotalvol(products[user.uid])
     // console.log("total volume",total_volume)
-    // console.log("curday", curday);
-    updateday({[curday]:Number(total_volume)} );
+    console.log("curday", curday);
+    updateday({[Number(curday)]:Number(total_volume)} );
     // total_volume = Object.entries(products[user.uid]).filter(x => x[0] != "Date").reduce((prev, cur) => parseFloat(cur[1].quantity) * parseFloat(cur[1].volume) + prev, 0) / 1000;
     const curDate = new Date();
     // console.log(curDate);

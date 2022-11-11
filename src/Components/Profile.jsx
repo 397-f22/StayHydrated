@@ -185,7 +185,7 @@ export const Profile  = () => {
                 <div id="edit goal">{
                   user?<button id="edit_button" type="submit" className="ms-auto btn btn-dark m-1 p-2" onClick={edit}>Edit Goal</button> :""}</div>
 
-                <div id="show chart" style={{height:"350px", width:"540px"}}>{
+                <div id="show chart" style={{height:"300px", width:"540px"}}>{
                   user && profile[user.uid] != undefined ?<BarChart datas={Object.values(profile[user.uid]["Days"])}></BarChart>:""
                   //  user?<button id="show_button" type="submit" className="btn btn-outline" onClick={show}>Show Record</button>:""
                 }</div>
