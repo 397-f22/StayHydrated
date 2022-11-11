@@ -143,35 +143,45 @@ export const Profile  = () => {
     const [profile, loading, error] = useData(`/Products`);
     // const [state, change] = useFormData(validateInput, product);
     // console.log("daily goal", profile["goal"])
-    console.log(user?.uid)
+    // console.log(user?.uid)
 
     const submit = (evt) =>{
+      evt.preventDefault();
       const goal = Number(document.getElementById('goal').value);
       if(goal){
         const jsonObj = {["goal"]:goal};
         console.log("daily goal", goal);
         update(jsonObj);
       }
-      
       document.getElementById('edit goal').innerHTML ='<button id="edit_button" type="submit" className="ms-auto btn btn-dark m-1 p-2" >Edit Goal</button>';
       document.getElementById('edit_button').onclick=edit;
+      document.getElementById('edit_button').className="ms-auto btn btn-dark m-1 p-2";
+ 
     }
 
 
     const edit = (evt) =>{
       evt.preventDefault();
       document.getElementById('edit goal').innerHTML = '<span> Daily Goal: <input id="goal" type="text"><small>(L)</small></span>\r\n'
-      +'<button id="submit_button" type="submit" className="ms-auto btn btn-dark m-1 p-2">submit</button>'; 
-      document.getElementById('submit_button').onclick=submit;    
-
+      +'<button id="submit_button" type="submit">submit</button>'; 
+      document.getElementById('submit_button').onclick=submit; 
+      document.getElementById('submit_button').className="ms-auto btn btn-dark m-1 p-2";
     }
     const show = (evt) =>{
       evt.preventDefault();
       document.getElementById('show chart').innerHTML += '<BarChart/>';
 
     }
-    
 
+    // console.log("edit goal inner:",document.getElementById('edit goal')?.innerHTML)
+    // if(user){
+    //   document.getElementById('edit goal').innerHTML ='<button id="edit_button" type="submit" className="ms-auto btn btn-dark m-1 p-2" >Edit Goal</button>';
+    //   document.getElementById('edit_button').onclick=edit;
+    //   document.getElementById('edit_button').className="ms-auto btn btn-dark m-1 p-2";
+    // }else{
+    //   document.getElementById('edit goal').innerHTML = " ";
+    // }
+    
       return (
         <div>
             <div className = "d-inline-flex flex-column" style={{paddingTop: "20px", width: "100vw"}}>
@@ -183,7 +193,7 @@ export const Profile  = () => {
                   
                 </div>
                 <div id="edit goal">{
-                  user?<button id="edit_button" type="submit" className="btn btn-outline" onClick={edit}>Edit Goal</button> :""}</div>
+                  user?<button id="edit_button" type="submit" className="btn btn-dark" onClick={edit}>Edit Goal</button> :" "}</div>
 
                 
                 <div id="show chart" style={{height:"300px", width:"200px"}}>{
@@ -191,12 +201,6 @@ export const Profile  = () => {
                   //  user?<button id="show_button" type="submit" className="btn btn-outline" onClick={show}>Show Record</button>:""
                 }</div>
                 
-                <div>{ user ? <SignOutButton /> : <SignInButton /> }</div>  
-                
-                {/* </div> */}
-        
-                      
-                {/* </div> */}
             </div>
       </div>
     );

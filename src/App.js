@@ -133,17 +133,8 @@ function App() {
   if (user != null && Object.keys(products).includes(user.uid)) {
     goal = products[user.uid]["goal"];
     total_volume = calTotalvol(products[user.uid])
-    // console.log("total volume",total_volume)
-    // console.log("curday", curday);
     updateday({[Number(curday)]:Number(total_volume)} );
-    // total_volume = Object.entries(products[user.uid]).filter(x => x[0] != "Date").reduce((prev, cur) => parseFloat(cur[1].quantity) * parseFloat(cur[1].volume) + prev, 0) / 1000;
-    const curDate = new Date();
-    // console.log(curDate);
-    // console.log(products[user.uid]["Date"].date)
-    const prevDate = new Date(products[user.uid]["Date"].date);
-    // console.log(prevDate);
-    const diff = Math.abs(curDate - prevDate) / 36e5;
-    // console.log(diff);
+    
   }
   // console.log(products)
   return (

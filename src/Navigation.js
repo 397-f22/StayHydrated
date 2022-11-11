@@ -27,6 +27,7 @@ const Navigation = ({profileClick}) =>{
                 {/* {user ? <p className="ms-auto" id="welcome">Welcome, {user.displayName}</p> : <p className="ms-auto" id="welcome">Welcome guest.</p>} */}
                 { user
                   ? <div>
+                      <SignOutButton />
                       <button style={{border: "none", background: "none", marginRight: "15px"}} onClick={() => {profileClick()}}>
                         <img src={user.photoURL} onClick={() => {profileClick()}} style={{height: "45px", borderRadius: "50%"}}></img>
                       </button>
