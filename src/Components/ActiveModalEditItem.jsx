@@ -1,5 +1,5 @@
 import { useFormData } from '../utilities/useFormData';
-import { useDbUpdate, useData, useDbDelete } from '../utilities/firebase';
+import { useDbUpdate} from '../utilities/firebase';
 
 const InputField = ({ name, text, state, change }) => (
     <div className="mb-3">
@@ -49,7 +49,7 @@ const validateInput = (quantity, volume) => {
       }
     };
 
-    const [deleteupdate, result2] = useDbUpdate(`/Products/${uid}`);
+    const [deleteupdate, /*result2*/] = useDbUpdate(`/Products/${uid}`);
     const deleteid = (evt) => {
       evt.preventDefault();
       console.log("delete", product.name)

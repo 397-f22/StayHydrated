@@ -3,7 +3,7 @@ import { getDatabase, onValue, ref, set, update } from 'firebase/database';
 import { useCallback, useEffect, useState } from 'react';
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider, onIdTokenChanged, signInWithPopup, signOut } from 'firebase/auth';
-import { getAnalytics } from "firebase/analytics";
+// import { getAnalytics } from "firebase/analytics";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -22,7 +22,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const firebase = initializeApp(firebaseConfig);
-const analytics = getAnalytics(firebase);
+// const analytics = getAnalytics(firebase);
 const database = getDatabase(firebase);
 
 
@@ -83,7 +83,7 @@ export const useDbUpdate = (path) => {
     update(ref(database, path), value)
     .then(() => setResult(generateResult()))
     .catch((error) => setResult(generateResult(error)))
-  }, [database, path]);
+  }, [path]);
 
   return [updateData, result];
 };

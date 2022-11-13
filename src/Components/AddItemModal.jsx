@@ -1,56 +1,56 @@
-import { useFormData } from '../utilities/useFormData';
-import { useDbUpdate, useData, setData } from '../utilities/firebase';
+// import { useFormData } from '../utilities/useFormData';
+import { useDbUpdate, useData} from '../utilities/firebase';
 import {useState} from 'react';
 
-const InputField = ({ name, text, state, change }) => (
-    <div className="mb-3">
-      <label htmlFor={name} className="form-label">
-        {text}
-      </label>
-      <input
-        className="form-control"
-        id={name}
-        name={name}
-        defaultValue={state.values?.[name]}
-        onChange={change}
-      />
-      <div className="invalid-feedback">{state.errors?.[name]}</div>
-    </div>
-  );
+// const InputField = ({ name, text, state, change }) => (
+//     <div className="mb-3">
+//       <label htmlFor={name} className="form-label">
+//         {text}
+//       </label>
+//       <input
+//         className="form-control"
+//         id={name}
+//         name={name}
+//         defaultValue={state.values?.[name]}
+//         onChange={change}
+//       />
+//       <div className="invalid-feedback">{state.errors?.[name]}</div>
+//     </div>
+//   );
   
-  const ButtonBar = ({ message, disabled }) => {
-    return (
-      <div className="d-flex">
-        <button type="submit" className="btn btn-primary me-auto" disabled={disabled}>Submit</button>
-        <span className="p-2">{message}</span>
-      </div>
-    );
-  };
+//   const ButtonBar = ({ message, disabled }) => {
+//     return (
+//       <div className="d-flex">
+//         <button type="submit" className="btn btn-primary me-auto" disabled={disabled}>Submit</button>
+//         <span className="p-2">{message}</span>
+//       </div>
+//     );
+//   };
 
-const validateInput = (quantity, volume) => {
-    switch (quantity) {
-      case 'quantity':
-        return "";
-      case 'volume':
-        return "";
-      default: return '';
-    }
-  };
+// const validateInput = (quantity, volume) => {
+//     switch (quantity) {
+//       case 'quantity':
+//         return "";
+//       case 'volume':
+//         return "";
+//       default: return '';
+//     }
+//   };
 
   const AddItemModal = ({close, count, uid}) => {
-    const [update, result] = useDbUpdate(`/Products/${uid}`);
-    const [products, loading, error] = useData(`/Products/${uid}`);
+    const [update] = useDbUpdate(`/Products/${uid}`);
+    const [products] = useData(`/Products/${uid}`);
     //const [state, change] = useFormData(validateInput, product);
-    const [state, change] = useState({values:{category: "", img_url: "", name: "", quantity: 0, volume: 0}});
+    // const [state, change] = useState({values:{category: "", img_url: "", name: "", quantity: 0, volume: 0}});
 
     const submitData = (evt) => {
       close();
       evt.preventDefault();
       const vol = document.getElementById("volume_new").value;
       const catalog = document.getElementById("category_new").value;
-      const img = document.getElementById("images").value;
+      // const img = document.getElementById("images").value;
       const id = Object.values(products).filter(x => x["category"]).pop().name;
-      const count = Object.entries(products).length;
+      // const count = Object.entries(products).length;
       console.log("id", id+1);
 
       // const quantity = document.getElementById("quantity").value;

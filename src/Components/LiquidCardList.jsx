@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import LiquidCard from "./LiquidCard";
 
 const LiquidCardList = ({ products, total_volume, goal }) => {

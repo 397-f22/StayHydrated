@@ -29,7 +29,7 @@ const Navigation = ({profileClick}) =>{
                   ? <div>
                       <SignOutButton />
                       <button style={{border: "none", background: "none", marginRight: "15px"}} onClick={() => {profileClick()}}>
-                        <img src={user.photoURL} onClick={() => {profileClick()}} style={{height: "45px", borderRadius: "50%"}}></img>
+                        <img src={user.photoURL} onClick={() => {profileClick()}} style={{height: "45px", borderRadius: "50%"}} alt="profile pic"></img>
                       </button>
                     </div>
                   : <div style={{marginRight: "15px"}}><SignInButton /></div> }

@@ -10,15 +10,15 @@ import { Profile } from "./Components/Profile.jsx";
 import Summary from './Components/Summary';
 import Modal from './Components/Modal';
 import AddItemModal from './Components/AddItemModal.jsx';
-import add from './Components/pngs/add.png'
+// import add from './Components/pngs/add.png'
 
 
 function App() {
   // const [volume, setVolume] = useState(0);
   const [products, loading, error] = useData('/Products');
   const [user] = useUserState();
-  const [update, result] = useDbUpdate(`/Products/`);
-  const [updateday, resultday] = useDbUpdate(`/Products/${user?.uid}/Days/`);
+  const [update, /*result*/] = useDbUpdate(`/Products/`);
+  const [updateday, /*resultday*/] = useDbUpdate(`/Products/${user?.uid}/Days/`);
 
   
 
@@ -34,11 +34,11 @@ function App() {
     setShowSummary(false);
     setShowTracking(false);
   };
-  const SummaryClick = () => {
-    setShowProfile(false);
-    setShowSummary(true);
-    setShowTracking(false);
-  };
+  // const SummaryClick = () => {
+  //   setShowProfile(false);
+  //   setShowSummary(true);
+  //   setShowTracking(false);
+  // };
   const TrackingClick = () => {
     setShowProfile(false);
     setShowSummary(false);
@@ -53,41 +53,41 @@ function App() {
         
         const jsonObj = {
           [user.uid]: {
-            ["Date"]: {
+            "Date": {
               date: today.toString()
             },
-            ["goal"]:3.0,
-            ["Days"]:{
-              [0]:0.0,
-              [1]:0.0,
-              [2]:0.0,
-              [3]:0.0,
-              [4]:0.0,
-              [5]:0.0,
-              [6]:0.0,
+            "goal":3.0,
+            "Days":{
+              0:0.0,
+              1:0.0,
+              2:0.0,
+              3:0.0,
+              4:0.0,
+              5:0.0,
+              6:0.0,
             },
-            [0]: {
+            0: {
               category: "Water",
               img_url: "https://cdn-icons-png.flaticon.com/512/4507/4507444.png",
               name: 0,
               quantity: 0,
               volume: 500
             },
-            [1]: {
+            1: {
               category: "Soda",
               img_url: "https://cdn-icons-png.flaticon.com/512/2722/2722527.png",
               name: 1,
               quantity: 0,
               volume: 500
             },
-            [2]: {
+            2: {
               category: "Coffee",
               img_url: "https://cdn-icons-png.flaticon.com/512/1047/1047503.png",
               name: 2,
               quantity: 0,
               volume: 500
             },
-            [3]: {
+            3: {
               category: "Tea",
               img_url: "https://cdn-icons-png.flaticon.com/512/3504/3504747.png",
               name: 3,

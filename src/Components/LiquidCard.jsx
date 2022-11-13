@@ -7,10 +7,6 @@ import { useDbUpdate } from "../utilities/firebase";
 import addButton from "./pngs/plus.png";
 import minusButton from "./pngs/minus.png";
 
-const addItem = (id, quantity, update) => {
-
-};
-
 // const SubtractFromBar = (id, quantity, update) => {
 //     update({"quantity": quantity - 1})
 //     // console.log(product.volume);
